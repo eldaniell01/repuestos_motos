@@ -1,11 +1,11 @@
 import mysql.connector
 
 class ConexionMySQL:
-    def __init__(self, host, usuario, contrasena, base_datos):
-        self.host = host
-        self.usuario = usuario
-        self.contrasena = contrasena
-        self.base_datos = base_datos
+    def __init__(self):
+        self.host = 'localhost'
+        self.usuario = 'root'
+        self.contrasena = '12Intercambios'
+        self.base_datos = 'repuesto_motos'
         self.conexion = None
         self.cursor = None
 
