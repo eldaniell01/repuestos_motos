@@ -22,13 +22,19 @@ class ConexionMySQL:
         except mysql.connector.Error as error:
             print("Error al conectar a la base de datos MySQL:", error)
 
-    def ejecutar_consulta(self, consulta):
+    def ejecutar_consulta(self, consulta, valores=None):
         try:
-            self.cursor.execute(consulta)
+           
+            if valores:
+                self.cursor.execute(consulta, valores)
+            else:
+                self.cursor.execute(consulta)
             resultados = self.cursor.fetchall()
+            self.conexion.commit()
             return resultados
         except mysql.connector.Error as error:
             print("Error al ejecutar la consulta:", error)
+        
 
     def cerrar_conexion(self):
         if self.cursor:

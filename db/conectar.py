@@ -15,4 +15,28 @@ class Consultas:
         self.conexion.cerrar_conexion()
         return resultado
         
-
+    def consultar_proveedor(self):
+        proveedor = self.conexion.ejecutar_consulta(f"""
+                                                    select *from proveedor
+                                                    """)
+        print(proveedor)
+        self.conexion.cerrar_conexion()
+        return proveedor
+    
+    def consultar_motos(self):
+        motos = self.conexion.ejecutar_consulta(f"""
+                                                select * from moto
+                                                """)
+        print(motos)
+        self.conexion.cerrar_conexion()
+        return motos
+    
+    def inset_repuesto(self, cod, name, description, precio, proveedor, moto):
+        query = """
+            INSERT INTO repuesto(cod_repuesto, name_repuesto, description, precio, moto_idmoto, proveedor_idproveedor)
+            VALUES (%s, %s, %s, %s, %s, %s);
+        """
+        values = (cod, name, description, precio, int(moto), int(proveedor))
+        
+        self.conexion.ejecutar_consulta(query, values)
+        self.conexion.cerrar_conexion()

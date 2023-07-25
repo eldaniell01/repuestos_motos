@@ -61,7 +61,7 @@ class Show_repuestos(QMainWindow):
                 font-weight:bold;
             }}
         """
-        self.setWindowTitle('segunda ventana')
+        self.setWindowTitle('VER PRODUCTOS')
         self.setFixedSize(800, 600)
         self.setStyleSheet(self.styles)  
         self.initUI()
@@ -93,7 +93,7 @@ class Show_repuestos(QMainWindow):
         form_frame.setObjectName('cuadro2')
         form_layout = QGridLayout(form_frame)
         form_layout.addWidget(self.rotulo,0, 0, 1, 1, alignment=Qt.AlignCenter)
-        form_layout.addWidget(self.textbox,1,0,)
+        form_layout.addWidget(self.textbox,1,0)
         form_layout.addWidget(self.upd,2,0,1, 1, alignment=Qt.AlignCenter)
         form_layout.setAlignment(Qt.AlignCenter)
         # Agregar frame del cuadro de texto y el botón al diseño principal

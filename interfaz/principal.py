@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QApplication, QGraphicsDropShadowEffect, QWidget, QM
 from PyQt5.QtCore import Qt,QPropertyAnimation, QEasingCurve
 from PyQt5.QtGui import QColor
 from interfaz.ver_repuestos import Show_repuestos
+from interfaz.registrar_repuesto import R_repuestos
 
 class VentanaPrincipal(QMainWindow):
     def __init__(self):
@@ -48,17 +49,28 @@ class VentanaPrincipal(QMainWindow):
         self.layout = QGridLayout()
         self.recibo = QPushButton('RECIBO', self)
         self.repuestos = QPushButton('VER REPUESTOS', self)
+        self.rRepuesto = QPushButton('REGISTRAR PRODUCTO', self)
+        
         self.layout.addWidget(self.recibo,0,0)
         self.layout.addWidget(self.repuestos,1,0)
+        self.layout.addWidget(self.rRepuesto,2,0)
         self.recibo.setObjectName('boton')
         self.repuestos.setObjectName('boton')
+        self.rRepuesto.setObjectName('boton')
+        
+
         self.repuestos.clicked.connect(self.abrirVentana)
+        self.rRepuesto.clicked.connect(self.reg_productos)
         self.shadow = QGraphicsDropShadowEffect()
         self.recibo.enterEvent = lambda event: self.button_enterEvent(self.recibo)
         self.recibo.leaveEvent = lambda event: self.button_leaveEvent(self.recibo)
         
         self.repuestos.enterEvent = lambda event: self.button_enterEvent(self.repuestos)
         self.repuestos.leaveEvent = lambda event: self.button_leaveEvent(self.repuestos)
+        
+        self.rRepuesto.enterEvent = lambda event: self.button_enterEvent(self.rRepuesto)
+        self.rRepuesto.leaveEvent = lambda event: self.button_leaveEvent(self.rRepuesto)
+        
         self.widget = QWidget()
         self.widget.setObjectName('cuadro')
         self.widget.setLayout(self.layout)
@@ -69,6 +81,10 @@ class VentanaPrincipal(QMainWindow):
         # Crea una instancia de la otra ventana y la muestra
         self.ventana_secundaria = Show_repuestos()
         self.ventana_secundaria.show()
+        
+    def reg_productos(self):
+        self.rproducto = R_repuestos()
+        self.rproducto.show()
         
     def button_enterEvent(self, boton):
         # Crear una animación para activar el efecto de sombra suavemente
